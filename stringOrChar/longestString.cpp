@@ -1,0 +1,26 @@
+//length of longest string without duplicates character
+#include<iostream>
+#include<unordered_set>
+#include<math.h>
+#include <bits/stdc++.h>
+using namespace std;
+int lengthLongestSubstring(string s){
+    int maxLength=0;
+    int left=0;
+    unordered_set <char>st;
+    for(int right=0;right<s.size();right++){
+       while(st.find(s[right])!=st.end()){
+        st.erase(s[left]);
+        left++;
+       }
+       
+    st.insert(s[right]);
+    maxLength=max(maxLength,right-left+1);
+    }
+    return maxLength;
+}
+int main(){
+string s="abcbak";
+int answer=lengthLongestSubstring(s);
+cout<<answer;
+}
